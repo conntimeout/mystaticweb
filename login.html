@@ -143,6 +143,7 @@
 	$(function(){
 		  console.log( "ready!" );
 		$("#forgotPassword").attr("href","https://oprs.mendaki.org.sg/FormAuth/ForgotPassword");
-		$("#localAccountForm h2").text("Sign in");
+		//$("#localAccountForm h2").text("Sign in");
+		$("#localAccountForm h2").html("<div>Sign in (<a onclick=javascript:$('#customazureadhookprovider').click()>Staff Click)</a></div>");
 	})
 </script>
