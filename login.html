@@ -39,7 +39,9 @@
             font-size: 25px;
             display: block;
         }
+.claims-provider-list-buttons .social{
 
+}
 	</style>
 
 	<script
@@ -102,7 +104,47 @@
         </div>
         <div class="login-m-con">
             <p class="note">Please enter your information to login.</p>
-    
+				<div id="overwriteapi">
+				<table class="m-table">
+                        <tbody><tr>
+                            <td>
+                                <div class="edit-label">
+                                    Login ID :<span class="mandatory">*</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="edit-field">
+                                <input class="text-box single-line" data-val="true" data-val-required="The User Name field is required." id="UserName" name="UserName" type="text" value="">                               
+                                </div>
+                            </td>
+                            <td>
+                                <a onclick="setPassword()" style="color: blue">Forgot Login ID?</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="edit-label">
+                                    Password :<span class="mandatory">*</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="edit-field">
+                                <input class="text-box single-line password" data-val="true" data-val-required="The Password field is required." id="Password" name="Password" type="password" value="">                                  
+                                </div>
+                            </td>
+                            <td>
+                                    <a onclick="forgotPassword()" style="color: blue">Forgot Password/First-time Login</a>
+                             </td>
+                        </tr>
+                        
+                    </tbody>
+					</table>
+					<div class="cl">
+                    <p>
+                        <input class="u-btn" type="submit" value="Sign In">
+                    </p>
+                </div>
+				</div>
 				<div id="api">
 				</div>
             
@@ -137,18 +179,18 @@
         </li>
     </ul>
     <p class="copyright">
-        <a onclick="window.open('/Home/GetPrivacyPolicy')" style=" color:blue; text-decoration:underline; font-weight:bold; margin-right:10px;">Privacy Policy</a>
-        <a onclick="window.open('/Home/GetTermsOfUse')" style=" color:blue; text-decoration:underline; font-weight:bold;margin-right:10px;">Terms of Use</a>
+        <a onclick="window.open('https://oprs.mendaki.org.sg/Home/GetPrivacyPolicy')" style=" color:blue; text-decoration:underline; font-weight:bold; margin-right:10px;">Privacy Policy</a>
+        <a onclick="window.open('https://oprs.mendaki.org.sg/Home/GetTermsOfUse')" style=" color:blue; text-decoration:underline; font-weight:bold;margin-right:10px;">Terms of Use</a>
         <a onclick="window.open('https://www.mendaki.org.sg/mendaki/payment-and-refund-policy')" style=" color:blue; text-decoration:underline; font-weight:bold;"> Refund Policy</a><br>
         Copyright © Yayasan MENDAKI 2014-2015. All rights reserved.
         <br>Version No.: 20150721.01</p>
     <p class="more">
             
 
-    <a href="/FormAuth/Login">Login</a>|
+    <a href="https://oprs.mendaki.org.sg/FormAuth/Login">Login</a>|
 
-        <a href="/Home/GetFAQ">FAQs</a>|
-		<a href="/Home/ContactUs">Contact Us</a>
+        <a href="https://www.mendaki.org.sg/tuition/">FAQs</a>|
+		<a href="https://www.mendaki.org.sg/tuition/">Contact Us</a>
     </p>
 </div>
 
