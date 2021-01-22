@@ -179,7 +179,7 @@ input[type=text], select {
         
 <div id="header">
     <h1 class="logo">
-        <a href="/" title="YAYASAN" mendaki=""></a>
+        <a id="homePageHyperlink" href="/" title="YAYASAN" mendaki=""></a>
     </h1>
     <h1 class="logo-text"></h1>
     <ul class="menu">
@@ -395,6 +395,7 @@ input[type=text], select {
 			$("#generalHelpMessageDialog").parent().addClass("mydialog-ok");
 		}
 		var rootURL=GetEnvironmentRootURL();
+		$("#homePageHyperlink").attr("href", rootURL);
 		$("#forgotPassword").attr("href",rootURL+"/FormAuth/ForgotPassword");
 		$("#next").after("<p><b>Mendaki Staff?</b> <a onclick=javascript:$('#mendakiAD').click()>Sign in here</a></p>");
 		$("#UserId").after("<a href='"+rootURL+"/FormAuth/ForgotLoginId' style='color: blue'>Forgot Login ID?</a>");
