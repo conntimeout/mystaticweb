@@ -397,9 +397,10 @@ input[type=text], select {
 		$("#next").after("<p><b>Mendaki Staff?</b> <a onclick=javascript:$('#mendakiAD').click()>Sign in here</a></p>");
 		$("#UserId").after("<a href='"+rootURL+"/FormAuth/ForgotLoginId' style='color: blue'>Forgot Login ID?</a>");
 		$("#password").after("<a href='"+rootURL+"/FormAuth/ForgotPassword' style='color: blue'>Forgot Password?</a>");
-		$("#UserId").focus(function(){
+		$("#UserId").click(function(){
 			 ShowLoginNotice();
 		})
 		$("#next").focus();
+		ShowLoginNotice();
 	})
 </script>
