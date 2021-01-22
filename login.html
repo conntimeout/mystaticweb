@@ -334,7 +334,7 @@ input[type=text], select {
         <div id="generalHelpMessageDiv" class="message-con">
             <p id="generalHelpMessageText"></p>
         </div>
-        <input type="button" value="OK" onclick="$('#generalHelpMessageDialog').dialog('close')" class="u-btn" />
+        <input id="generalHelpMessageDialog" type="button" value="OK" class="u-btn" />
     </div>
 
                 
@@ -379,6 +379,7 @@ input[type=text], select {
 				}
 			});
 			$("#generalHelpMessageDialog input").click(function () {
+				 $("#generalHelpMessageDialog").dialog( "close" );
 				if (typeof callback === "function") {
 					callback();
 				}
@@ -401,6 +402,6 @@ input[type=text], select {
 			 ShowLoginNotice();
 		})
 		$("#next").focus();
-		ShowLoginNotice();
+		//ShowLoginNotice();
 	})
 </script>
