@@ -352,12 +352,22 @@ input[type=text], select {
 </html>
 <script>
 	$(function(){
-		  console.log( "ready!" );
-		$("#forgotPassword").attr("href","https://oprs.mendaki.org.sg/FormAuth/ForgotPassword");
+		
+		function GetEnvironmentRootURL(){
+			if(location.search.indexOf('localhost')>0)
+				return "https://localhost/OPRS.Web";
+			if(location.search.indexOf('uat-oprs')>0)
+				return "https://uat-oprs.mendaki.org.sg";
+			if(location.search.indexOf('oprs.mendaki.org.sg')>0)
+				return 'https://oprs.mendaki.org.sg';
+			return "./";
+		}
+		var rootURL=GetEnvironmentRootURL();
+		$("#forgotPassword").attr("href",rootURL+"/FormAuth/ForgotPassword");
 		//$("#localAccountForm h2").text("Sign in");
 		//$("#localAccountForm h2").html("<div>Sign in (<a onclick=javascript:$('#customazureadhookprovider').click()>Staff Click)</a></div>");
 		$("#next").after("<p><b>Mendaki Staff?</b> <a onclick=javascript:$('#mendakiAD').click()>Sign in here</a></p>");
-		$("#UserId").after("<a href='https://oprs.mendaki.org.sg/FormAuth/ForgotLoginId' style='color: blue'>Forgot Login ID?</a>");
-		$("#password").after("<a href='https://oprs.mendaki.org.sg/FormAuth/ForgotPassword' style='color: blue'>Forgot Password?</a>");
+		$("#UserId").after("<a href='"+rootURL+"/FormAuth/ForgotLoginId' style='color: blue'>Forgot Login ID?</a>");
+		$("#password").after("<a href='"+rootURL+"/FormAuth/ForgotPassword' style='color: blue'>Forgot Password?</a>");
 	})
 </script>
