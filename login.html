@@ -398,7 +398,7 @@ input[type=text], select {
 		$("#UserId").after("<a href='"+rootURL+"/FormAuth/ForgotLoginId' style='color: blue'>Forgot Login ID?</a>");
 		$("#password").after("<a href='"+rootURL+"/FormAuth/ForgotPassword' style='color: blue'>Forgot Password?</a>");
 		$("#UserId").click(function(){
-			$( "#dialog" ).dialog();
+			 ShowLoginNotice();
 		})
 		
 	})
