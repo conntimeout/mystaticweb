@@ -139,11 +139,38 @@ input[type=text], select {
     width: 63%;
     box-shadow: 0 0 30px 0 #dae1f7;
 }
+.error{
+	color:red;
+}
+.ui-dialog {
+    /*z-index:9999;*/
+    padding:0;
+    background:#F2F0F0;
+}
+ .ui-dialog[aria-describedby='generalHelpMessageDialog'] .ui-widget-header {
+        border: none;
+        background: url(https://oprs.mendaki.org.sg/Content/themes/base/Images/message-ok-1100width.png) no-repeat;
+        height: 60px;
+		
+    }
+.ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front.ui-draggable.ui-resizable.mydialog-ok {
+	z-index:1
+	}
+	.message{width:443px;height:auto;padding:10px}
+	.message .message-wrapper{border-radius:5px;overflow:hidden;background:#f2f0f0}
+	.message .message-ok{background:url(../Content/themes/base/Images/message-ok.png) no-repeat;width:443px;height:60px}
+	.message .message-error{background:url(../Content/themes/base/Images/message-error.png) no-repeat;width:443px;height:60px}
+	.message .message-con{background:#f2f0f0;border:1px solid #dfdddd;border-radius:3px;margin:15px;padding:10px}
+	.message .message-con p{line-height:20px;color:#957171}.message .u-btn{margin-right:15px;margin-bottom:20px;padding:0 20px}
 	</style>
 
 	<script
   src="https://code.jquery.com/jquery-3.5.1.min.js"
   integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+  <script
+  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
   crossorigin="anonymous"></script>
 </head>
 <body>
@@ -158,7 +185,7 @@ input[type=text], select {
         <li>
             
 
-    <a class="login" href="/FormAuth/Login">
+    <a class="login" href="#">
          <i class="iconfont">&#x1002;</i>
         <span>Login</span>
     </a>
@@ -303,40 +330,12 @@ input[type=text], select {
 </div>
 
     </div>
-        
-<div id="header">
-    <h1 class="logo">
-        <a href="/" title="YAYASAN" mendaki=""></a>
-    </h1>
-    <h1 class="logo-text"></h1>
-    <ul class="menu">
-        <li>
-            
-
-    <a class="login" href="/FormAuth/Login">
-        <i class="iconfont">ဂ</i>
-        <span>Login</span>
-    </a>
-
-            <em class="divider"></em>
-       </li>
-        <li>
-            <a class="faq" href="http://mts.mendaki.org.sg/faq.html">
-                <i class="iconfont">ခ</i>
-                <span>FAQs</span>
-            </a>
-            <em class="divider"></em>
-        </li>
-        <li>
-            <a class="contact" href=" http://mts.mendaki.org.sg/contactus.html">
-                <i class="iconfont">ဃ</i>
-                <span>Contact Us</span>
-            </a>
-        </li>
-    </ul>
-</div>
-
-</div>
+   <div id="generalHelpMessageDialog" style="display: none" class="message message-wrapper">
+        <div id="generalHelpMessageDiv" class="message-con">
+            <p id="generalHelpMessageText"></p>
+        </div>
+        <input type="button" value="OK" onclick="$('#generalHelpMessageDialog').dialog('close')" class="u-btn" />
+    </div>
 
                 
 </body>
@@ -353,12 +352,54 @@ input[type=text], select {
 				return 'https://oprs.mendaki.org.sg';
 			return "./";
 		}
+		function ShowLoginNotice(){
+			 var html = '<div>\
+						<div  style="text-decoration: underline;text-align:center"><b>OPRS</b></div><br/>\
+						<p style="color:black">In compliance with the Personal Data Protection Act 2012, specifically, the Advisory Guidelines on the PDPA for NRIC and Other National Identification Numbers issues by PDPC, we, Yayasan MENDAKI, have implemented the following measures:\
+                             <br />&emsp;-	You will no longer be allowed to access your OPRS account using your existing Registration ID and/or NRIC Number. A letter containing your new login details has been sent to the mailing address which you have provided to us;\
+                         <br />&emsp;-	If you have forgotten your Login ID or your password, we will send you a One-Time Password to the mobile number which you have provided to us before we provide the new Login ID to you;\
+                         <br />&emsp;-	We will still be collecting your NRIC number through our OPRS system in order to verify your identity to a high level of accuracy for the purposes of evaluating your eligibility and suitability and processing your application.\
+                         </P>\
+                          <p style="color:black">\
+                         <br />In order for us to continue providing our services to you, please ensure that you provide us with complete and accurate contact information (including your mailing address and your mobile number) and that you update us on changes to your contact information.\
+                         We assure you that we will undertake proper safeguarding measures to protect your personal data (including NRIC Numbers / FIN / Birth Certificate Numbers / Work Permit Numbers) under our care in accordance with our <a style="color:blue;text-decoration: underline;" href="https://apc01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fwww.mendaki.org.sg%2Fmendaki%2Fprivacy-policy&data=02%7C01%7Cymcheng%40ncs.com.sg%7C1bc0357cc60d4fdc2c3308d74fe5c49f%7Cca90d8f589634b6ebca99ac468bcc7a8%7C1%7C0%7C637065720614859546&sdata=zmFgGcVtstwzxkCWiDUJUUR9KtU%2BkbsgN76J709pkeU%3D&reserved=0">Privacy Policy</a>. Contact us at <a style="color:blue;text-decoration: underline;" href="mailto:mts@mendaki.org.sg">mts@mendaki.org.sg</a> / 6551 2830 should you have any general enquiries or concerns. For data privacy, you may contact our Data Protection Officer at <a style="color:blue;text-decoration: underline;" href="mailto:dpo@mendaki.org.sg">dpo@mendaki.org.sg</a>.\
+                         </p>\
+                 </div>';
+         showMessage(html, "", null, 860, 640);
+		}
+		function showMessage(message, title,callback,width,height) {
+			$("#generalHelpMessageDiv").html("<p>" + message + "</p>");
+			$("#generalHelpMessageDialog").dialog({
+				modal: true,
+				title: title,
+				width: width || 443,
+				height:height || 'auto',
+				open: function (event, ui) {
+					$(".ui-dialog-titlebar-close", $(this).parent()).hide();
+				}
+			});
+			$("#generalHelpMessageDialog input").click(function () {
+				if (typeof callback === "function") {
+					callback();
+				}
+			});
+			if ($("#generalHelpMessageDialog").parent().hasClass("mydialog-ok")) {
+				$("#generalHelpMessageDialog").parent().removeClass("mydialog-ok");
+			} else if ($("#generalHelpMessageDialog").parent().hasClass("mydialog-error")) {
+				$("#generalHelpMessageDialog").parent().removeClass("mydialog-error");
+			} else if ($("#generalHelpMessageDialog").parent().hasClass("mydialog-warn")) {
+				$("#generalHelpMessageDialog").parent().removeClass("mydialog-warn");
+			}
+			$("#generalHelpMessageDialog").parent().addClass("mydialog-ok");
+		}
 		var rootURL=GetEnvironmentRootURL();
 		$("#forgotPassword").attr("href",rootURL+"/FormAuth/ForgotPassword");
-		//$("#localAccountForm h2").text("Sign in");
-		//$("#localAccountForm h2").html("<div>Sign in (<a onclick=javascript:$('#customazureadhookprovider').click()>Staff Click)</a></div>");
 		$("#next").after("<p><b>Mendaki Staff?</b> <a onclick=javascript:$('#mendakiAD').click()>Sign in here</a></p>");
 		$("#UserId").after("<a href='"+rootURL+"/FormAuth/ForgotLoginId' style='color: blue'>Forgot Login ID?</a>");
 		$("#password").after("<a href='"+rootURL+"/FormAuth/ForgotPassword' style='color: blue'>Forgot Password?</a>");
+		$("#UserId").click(function(){
+			$( "#dialog" ).dialog();
+		})
+		
 	})
 </script>
