@@ -173,6 +173,8 @@ input[type=text], select {
   src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
   integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
   crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"
+  crossorigin="anonymous"></script>
 </head>
 <body>
 <div class="header cl">
@@ -342,8 +344,19 @@ input[type=text], select {
 </body>
 </html>
 <script>
+  
 	$(function(){
-		
+        
+    jQuery.ajaxSetup({
+    beforeSend: function() {
+        $.LoadingOverlay("show");
+    },
+    complete: function(){
+        $.LoadingOverlay("hide",true);
+    },
+    success: function() {}
+    });
+
 		function GetEnvironmentRootURL(){
 			if(location.search.indexOf('localhost')>0)
 				return "https://localhost/OPRS.Web";
@@ -400,15 +413,19 @@ input[type=text], select {
             return new Promise((resolve, reject) => {
                 $.ajax({
                 url: checkURL,
-                type: 'Get',
+                dataType:"json",
+                method: 'GET',
                 data: {
                     userID: 'a_oprs',
                 },
                 success: function (data) {
-                   console.log(data);
+                   
+                    console.log(data);
+                    return data;
                 },
                 error: function (error) {
                     console.log(error);
+                    return "error";
                 }
                 })
             }) 
@@ -417,7 +434,7 @@ input[type=text], select {
 
         }
         function GoToResetPassword(){
-
+            $("#forgotPassword").trigger('click');
         }
         function InitUI()
         {
@@ -437,8 +454,11 @@ input[type=text], select {
                 IsUserMigrated().then(
                         (data)=>{
                             console.log(data);
-                            if(data=="true"){
+                            if(data=="true" || "error"){
                                 $("#next").click(); 
+                            }
+                            else{
+                                GoToResetPassword();
                             }
                         }
                     )
