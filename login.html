@@ -231,7 +231,7 @@ input[type=text], select {
         <p class="note">Please enter your information to login.</p>
 
 				<div id="api"></div>
-				<!--<div id="api" data-name="Unified">
+				<div id="api" data-name="Unified">
 						<div class="claims-provider-list-buttons social" aria-label="Sign in with your social account" role="form">
 						  <div class="intro">
 							<h2 aria-level="1">Sign in with your social account</h2>
@@ -282,7 +282,7 @@ input[type=text], select {
 						</div>
 					  </form>
 				  </div>
-				-->
+				
             
             </div>
         </div>
@@ -394,17 +394,63 @@ input[type=text], select {
 			}
 			$("#generalHelpMessageDialog").parent().addClass("mydialog-ok");
 		}
-		var rootURL=GetEnvironmentRootURL();
-		$("#homePageHyperlink").attr("href", rootURL);
-		$("#forgotPassword").attr("href",rootURL+"/FormAuth/ForgotPassword");
-		$("#next").after("<p><b>Mendaki Staff?</b> <a onclick=javascript:$('#mendakiAD').click()>Sign in here</a></p>");
-		$("#UserId").after("<a href='"+rootURL+"/FormAuth/ForgotLoginId' style='color: blue'>Forgot Login ID?</a>");
-		$("#password").after("<a href='"+rootURL+"/FormAuth/ForgotPassword' style='color: blue'>Forgot Password?</a>");
-		$("#UserId").click(function(){
-			 ShowLoginNotice();
-		})
-		$("#next").focus();
-		$(".create").remove();
-		//ShowLoginNotice();
+        
+        function IsUserMigrated(){
+            var checkURL=GetEnvironmentRootURL()+"/Home/IsUserMigrated"
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                url: checkURL,
+                type: 'Get',
+                data: {
+                    userID: 'a_oprs',
+                },
+                success: function (data) {
+                   console.log(data);
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+                })
+            }) 
+        }
+        function Login(){
+
+        }
+        function GoToResetPassword(){
+
+        }
+        function InitUI()
+        {
+            var rootURL=GetEnvironmentRootURL();
+            $("#homePageHyperlink").attr("href", rootURL);
+            $("#forgotPassword").attr("href",rootURL+"/FormAuth/ForgotPassword");
+            $("#next").after("<p><b>Mendaki Staff?</b> <a onclick=javascript:$('#mendakiAD').click()>Sign in here</a></p>");
+            $("#UserId").after("<a href='"+rootURL+"/FormAuth/ForgotLoginId' style='color: blue'>Forgot Login ID?</a>");
+            $("#password").after("<a href='"+rootURL+"/FormAuth/ForgotPassword' style='color: blue'>Forgot Password?</a>");
+            $("#UserId").click(function(){
+                ShowLoginNotice();
+            })
+            $("#next").hide();
+            $("#next").before("<button id='submitbutton'>Sign in</button>")
+            $(".create").remove();
+            $("#submitbutton").click(function(){
+                IsUserMigrated().then(
+                        (data)=>{
+                            console.log(data);
+                            if(data=="true"){
+                                $("#next").click(); 
+                            }
+                        }
+                    )
+                    .catch(
+                        (error)=>{
+                            consoel.log(error);
+                        }
+                    )
+            });
+        }
+        
+        //init
+        InitUI();
 	})
 </script>
