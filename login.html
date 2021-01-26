@@ -409,7 +409,7 @@ input[type=text], select {
                 dataType:"json",
                 method: 'GET',
                 data: {
-                    userID: $("UserId").val(),
+                    userID: $("#UserId").val(),
                 },
                 success: function (data) {
                     resolve(data);
