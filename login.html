@@ -409,7 +409,7 @@ input[type=text], select {
                 dataType:"json",
                 method: 'GET',
                 data: {
-                    userID: 'a_oprs',
+                    userID: $("UserId").val(),
                 },
                 success: function (data) {
                     resolve(data);
@@ -424,7 +424,7 @@ input[type=text], select {
             }) 
         }
         function Login(){
-
+            $("#next").trigger('click');
         }
         function GoToResetPassword(){
             window.location=$("#forgotPassword").attr("href");
@@ -447,7 +447,7 @@ input[type=text], select {
                 IsUserMigrated().then(
                         function(data){
                             if(data=="true"){
-                                $("#next").trigger('click');
+                               login();
                             }
                             else{
                                 showMessage("Your password expiry, please reset your password","Info",GoToResetPassword())
@@ -456,7 +456,8 @@ input[type=text], select {
                     )
                     .catch(
                         function(error){
-                            $("#next").trigger('click');
+                            showMessage(error);
+                           login();
                         }
                     )
             });
