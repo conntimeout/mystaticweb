@@ -441,10 +441,16 @@ input[type=text], select {
             $("#UserId").click(function(){
                 ShowLoginNotice();
             })
-            $("#next").hide();
+            $("#next").css("visibility","hidden");
             $("#next").before("<button id='submitbutton'>Sign in</button>")
             $(".create").remove();
             $("#submitbutton").click(function(){
+                if($("#UserID").val()=="" || $("#password").val()=="")
+                   {
+                       Login();
+                       return;
+                   }
+                
                 IsUserMigrated().then(
                         function(data){
                             if(data=="true"){
