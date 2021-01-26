@@ -347,16 +347,6 @@ input[type=text], select {
   
 	$(function(){
         
-    jQuery.ajaxSetup({
-    beforeSend: function() {
-        $.LoadingOverlay("show");
-    },
-    complete: function(){
-        $.LoadingOverlay("hide",true);
-    },
-    success: function() {}
-    });
-
 		function GetEnvironmentRootURL(){
 			if(location.search.indexOf('localhost')>0)
 				return "https://localhost/OPRS.Web";
@@ -413,6 +403,9 @@ input[type=text], select {
             return new Promise((resolve, reject) => {
                 $.ajax({
                 url: checkURL,
+                beforeSend: function() {
+                    $.LoadingOverlay("show");
+                },
                 dataType:"json",
                 method: 'GET',
                 data: {
@@ -422,6 +415,9 @@ input[type=text], select {
                    
                     console.log(data);
                     return data;
+                },
+                complete:function(){
+                    $.LoadingOverlay("hide",true);
                 },
                 error: function (error) {
                     console.log(error);
