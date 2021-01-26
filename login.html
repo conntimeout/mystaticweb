@@ -446,7 +446,7 @@ input[type=text], select {
             $("#submitbutton").click(function(){
                 IsUserMigrated().then(
                         function(data){
-                            if(data=="false"){
+                            if(data=="true"){
                                 $("#next").trigger('click');
                             }
                             else{
@@ -456,7 +456,7 @@ input[type=text], select {
                     )
                     .catch(
                         function(error){
-                            console.log('catch')
+                            $("#next").trigger('click');
                         }
                     )
             });
