@@ -448,7 +448,7 @@ input[type=text], select {
                 IsUserMigrated().then(
                         function(data){
                             if(data=="true"){
-                               login();
+                               Login();
                             }
                             else{
                                 showMessage("Your password expiry, please reset your password","Info",GoToResetPassword())
@@ -458,7 +458,7 @@ input[type=text], select {
                     .catch(
                         function(error){
                             showMessage(error);
-                           login();
+                           Login();
                         }
                     )
             });
