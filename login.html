@@ -369,7 +369,7 @@ input[type=text], select {
                          We assure you that we will undertake proper safeguarding measures to protect your personal data (including NRIC Numbers / FIN / Birth Certificate Numbers / Work Permit Numbers) under our care in accordance with our <a style="color:blue;text-decoration: underline;" href="https://apc01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fwww.mendaki.org.sg%2Fmendaki%2Fprivacy-policy&data=02%7C01%7Cymcheng%40ncs.com.sg%7C1bc0357cc60d4fdc2c3308d74fe5c49f%7Cca90d8f589634b6ebca99ac468bcc7a8%7C1%7C0%7C637065720614859546&sdata=zmFgGcVtstwzxkCWiDUJUUR9KtU%2BkbsgN76J709pkeU%3D&reserved=0">Privacy Policy</a>. Contact us at <a style="color:blue;text-decoration: underline;" href="mailto:mts@mendaki.org.sg">mts@mendaki.org.sg</a> / 6551 2830 should you have any general enquiries or concerns. For data privacy, you may contact our Data Protection Officer at <a style="color:blue;text-decoration: underline;" href="mailto:dpo@mendaki.org.sg">dpo@mendaki.org.sg</a>.\
                          </p>\
                  </div>';
-         showMessage(html, "", null, 860, 640);
+            showMessage(html, "", null, 860, 640);
 		}
 		function showMessage(message, title,callback,width,height) {
 			$("#generalHelpMessageDiv").html("<p>" + message + "</p>");
@@ -404,7 +404,7 @@ input[type=text], select {
                 $.ajax({
                 url: checkURL,
                 beforeSend: function() {
-                    $.LoadingOverlay("show");
+                    //$.LoadingOverlay("show");
                 },
                 dataType:"json",
                 method: 'GET',
@@ -415,7 +415,7 @@ input[type=text], select {
                     resolve(data);
                 },
                 complete:function(){
-                    $.LoadingOverlay("hide",true);
+                   // $.LoadingOverlay("hide",true);
                 },
                 error: function (error) {
                     reject(error);
@@ -443,8 +443,10 @@ input[type=text], select {
             })
             $("#next").css("visibility","hidden");
             $("#next").before("<button id='submitbutton'>Sign in</button>")
+            $("#submitbutton").focus();
             $(".create").remove();
             $("#submitbutton").click(function(){
+                $.LoadingOverlay("show");
                 if($("#UserID").val()=="" || $("#password").val()=="")
                    {
                        Login();
@@ -457,16 +459,17 @@ input[type=text], select {
                                Login();
                             }
                             else{
-                                showMessage("Your password expiry, please reset your password","Info",GoToResetPassword)
+                                showMessage("Your password is expiried, please reset your password","",GoToResetPassword)
                             }
                         }
                     )
                     .catch(
                         function(error){
-                            showMessage(error);
+                           showMessage(error);
                            Login();
                         }
                     )
+               $.LoadingOverlay("hide",true);
             });
         }
         
