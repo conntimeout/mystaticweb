@@ -465,7 +465,7 @@ input[type=text], select {
                 ShowLoginNotice();
             })
             $("#next").css("visibility","hidden");
-            $("#next").before("<input type='button' id='submitbutton'>Sign in</input>")
+            $("#next").before("<button id='submitbutton' type='button'>Sign in</button>")
             $("#submitbutton").focus();
             $(".create").remove();
             $("#submitbutton").click(function(){
