@@ -470,12 +470,13 @@ input[type=text], select {
             $("#submitbutton").click(function(){
                 if($("#UserID").val()=="" || $("#password").val()=="")
                    {
-                       Login();
+                      // Login();
                        return;
                    }
                 
                 IsUserMigrated().then(
                         function(data){
+                            console.log(data);
                             if(data=="true"){
                                Login();
                             }
