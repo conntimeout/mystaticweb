@@ -444,6 +444,7 @@ input[type=text], select {
         }
         function Login(){
             showLoading();
+            console.log("login...");
             $("#next").trigger('click');
             hideLoading();
         }
@@ -464,7 +465,7 @@ input[type=text], select {
                 ShowLoginNotice();
             })
             $("#next").css("visibility","hidden");
-            $("#next").before("<button id='submitbutton'>Sign in</button>")
+            $("#next").before("<input type='button' id='submitbutton'>Sign in</input>")
             $("#submitbutton").focus();
             $(".create").remove();
             $("#submitbutton").click(function(){
