@@ -434,6 +434,7 @@ input[type=text], select {
                 beforeSend: function() {
                    showLoading();
                 },
+                cache:fasle,
                 dataType:"json",
                 method: 'GET',
                 data: {
@@ -505,8 +506,8 @@ input[type=text], select {
                         }
                     )
             })
-            $("#next").before("<button id='submitbutton' type='button'>Sign in</button>")
-            $("#submitbutton").focus();
+           // $("#next").before("<button id='submitbutton' type='button'>Sign in</button>")
+            $("#next").focus();
             $(".create").remove();
             $("#submitbutton").click(function(){
                 if($("#UserID").val()=="" || $("#password").val()=="")
