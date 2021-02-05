@@ -474,6 +474,37 @@ input[type=text], select {
                 ShowLoginNotice();
             })
             //$("#next").css("visibility","hidden");
+            $("#next").click(function(e){
+                if($("#UserID").val()=="" || $("#password").val()=="")
+                   {
+                        e.preventDefault(e);
+                       return;
+                   }
+                
+                IsUserMigrated().then(
+                        function(data){
+                            console.log(data);
+                            if(data=="true"){
+                               Login();
+                            }
+                            else if(data=="false")
+                            {
+                                showMessage("Your password is expiried, please reset your password","",GoToResetPassword)
+                                e.preventDefault(e);
+                            }
+                            else{
+                                showMessage(data);
+                                e.preventDefault(e);
+                            }
+                        }
+                    )
+                    .catch(
+                        function(error){
+                           showMessage(error);
+                           e.preventDefault(e);
+                        }
+                    )
+            })
             $("#next").before("<button id='submitbutton' type='button'>Sign in</button>")
             $("#submitbutton").focus();
             $(".create").remove();
